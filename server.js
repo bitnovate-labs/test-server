@@ -25,6 +25,8 @@ app.use(
   })
 );
 
+console.log("Testing successful!");
+
 app.get("/", (req, res) => res.send("Server started here!!!"));
 
 app.listen(PORT, "0.0.0.0", (req, res) =>
