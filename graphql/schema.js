@@ -8,8 +8,8 @@ export const schema = buildSchema(`
   }
 
   type Query {
-    item(id: ID!): Item
     items: [Item]
+    item(id: ID!): Item
   }
 
   type Mutation {
@@ -25,6 +25,15 @@ export const rootValue = {
     } catch (error) {
       console.error("Error fetching items:", error);
       throw new Error("Error fetching items");
+    }
+  },
+  item: async ({ id }) => {
+    try {
+      const res = await db.query("SELECT * FROM items WHERE id = $1", [id]);
+      return res.rows[0] || null; // Return null if no item found
+    } catch (error) {
+      console.error("Error fetching item:", error);
+      throw new Error("Error fetching item");
     }
   },
   addItem: async ({ name }) => {
