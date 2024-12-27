@@ -15,7 +15,6 @@ app.use(
   graphqlHTTP({
     schema,
     rootValue,
-    // rootValue: resolvers,
     graphiql: true,
   })
 );
@@ -24,7 +23,7 @@ app.use(
 app.use(
   cors({
     origin: "http://localhost:5173",
-    credentials: true,
+    // credentials: true,
   })
 );
 
