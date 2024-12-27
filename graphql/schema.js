@@ -9,7 +9,7 @@ export const schema = buildSchema(`
 
   type Query {
     items: [Item]
-    item(id: ID!): Item
+    item(id: String!): Item
   }
 
   type Mutation {
