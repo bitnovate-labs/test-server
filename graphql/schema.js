@@ -30,7 +30,7 @@ export const rootValue = {
   item: async ({ id }) => {
     try {
       const res = await db.query("SELECT * FROM items WHERE id = $1", [id]);
-      return res.rows[0] || null; // Return null if no item found
+      return res.rows[0]; // Return null if no item found
     } catch (error) {
       console.error("Error fetching item:", error);
       throw new Error("Error fetching item");
