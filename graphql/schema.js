@@ -2,9 +2,13 @@ import { buildSchema } from "graphql";
 import { db } from "../db/db.js";
 
 export const schema = buildSchema(`
-  type Item {
-    id: String
+    type Item {
+    id: Int
     name: String
+    description: String
+    price: Float
+    quantity: Int
+    created_at: String
   }
 
   type Query {
@@ -13,11 +17,12 @@ export const schema = buildSchema(`
   }
 
   type Mutation {
-    addItem(name: String!): Item
+    addItem(name: String!, description: String, price: Float!, quantity: Int!): Item
   }
 `);
 
 export const rootValue = {
+  // Fetch All Items
   items: async () => {
     try {
       const res = await db.query("SELECT * FROM items");
@@ -27,6 +32,8 @@ export const rootValue = {
       throw new Error("Error fetching items");
     }
   },
+
+  // Fetch a single item by ID
   item: async ({ id }) => {
     try {
       const res = await db.query("SELECT * FROM items WHERE id = $1", [id]);
@@ -36,11 +43,13 @@ export const rootValue = {
       throw new Error("Error fetching item");
     }
   },
-  addItem: async ({ name }) => {
+
+  // Add a new item to the database
+  addItem: async ({ name, description, price, quantity }) => {
     try {
       const res = await db.query(
-        "INSERT INTO items (name) VALUES ($1) RETURNING *",
-        [name]
+        "INSERT INTO items (name, description, price, quantity) VALUES ($1, $2, $3, $4) RETURNING *",
+        [name, description, price, quantity]
       );
       return res.rows[0]; // Return the inserted item
     } catch (error) {
