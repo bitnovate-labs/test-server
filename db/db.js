@@ -16,7 +16,10 @@ export const db = new Pool({
   database: "rds_db_initial",
   password: "Test123321!",
   port: 5432,
-  ssl: false,
+  ssl: {
+    require: true,
+    rejectUnauthorized: false,
+  },
 });
 
 // Test database connection
