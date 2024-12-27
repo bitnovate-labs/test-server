@@ -11,15 +11,10 @@ export const db = new Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
-  // user: "postgrestest",
-  // host: "rds-test-database.cvcu4u4sysuk.ap-southeast-1.rds.amazonaws.com",
-  // database: "rds_db_initial",
-  // password: "Test123321!",
-  // port: 5432,
-  ssl: {
-    require: true,
-    rejectUnauthorized: false,
-  },
+  // ssl: {
+  //   require: true,
+  //   rejectUnauthorized: false,
+  // },
 });
 
 // Test database connection
