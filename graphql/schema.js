@@ -3,7 +3,7 @@ import { db } from "../db/db.js";
 
 export const schema = buildSchema(`
     type Item {
-    id: Int
+    item_id: Int
     name: String
     description: String
     price: Float
