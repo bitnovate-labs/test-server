@@ -22,10 +22,10 @@ app.use(
     graphiql: true,
   }),
   cors({
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
     // origin: "https://main.dbg1wx3tbcsoa.amplifyapp.com/",
-    // origin:
-    //   "http://s3.test.application.s3-website-ap-southeast-1.amazonaws.com/",
+    origin:
+      "http://s3.test.application.s3-website-ap-southeast-1.amazonaws.com/",
     credentials: true,
   })
 );
