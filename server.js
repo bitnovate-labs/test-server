@@ -4,8 +4,6 @@ import { schema } from "./graphql/schema.js";
 import { resolvers } from "./graphql/resolvers.js";
 import cors from "cors";
 import dotenv from "dotenv";
-import https from "https";
-import fs from "fs";
 
 dotenv.config();
 
@@ -13,19 +11,23 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-// CORS Configuration
 app.use(
   "/graphql",
   graphqlHTTP({
     schema,
-    rootValue: resolvers,
+    // rootValue: resolvers,
     graphiql: true,
-  }),
+  })
+);
+
+// CORS Configuration
+app.use(
   cors({
     origin: "http://localhost:5173",
     // origin: "https://main.dbg1wx3tbcsoa.amplifyapp.com/",
     // origin:
     //   "http://s3.test.application.s3-website-ap-southeast-1.amazonaws.com/",
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
