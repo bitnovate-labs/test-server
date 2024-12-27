@@ -8,6 +8,7 @@ export const schema = buildSchema(`
   }
 
   type Query {
+    item(id: ID!): Item
     items: [Item]
   }
 
