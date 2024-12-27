@@ -22,8 +22,7 @@ app.use(
 // CORS Configuration
 app.use(
   cors({
-    origin: "https://localhost:5173",
-    // methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
