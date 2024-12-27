@@ -27,7 +27,6 @@ app.use(
     // origin: "https://main.dbg1wx3tbcsoa.amplifyapp.com/",
     // origin:
     //   "http://s3.test.application.s3-website-ap-southeast-1.amazonaws.com/",
-    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
