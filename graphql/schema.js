@@ -4,6 +4,7 @@ import {
   GraphQLList,
   GraphQLSchema,
 } from "graphql";
+import { db } from "../db/db.js";
 
 // export const schema = buildSchema(`
 //     type Query {
@@ -37,8 +38,14 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     items: {
       type: new GraphQLList(ItemType),
-      resolve(parent, args) {
-        return pool.query("SELECT * FROM items").then((res) => res.rows);
+      async resolve(parent, args) {
+        try {
+          const res = await db.query("SELECT * FROM items");
+          return res.rows;
+        } catch (error) {
+          console.error("Error fetching items:", error);
+          throw new Error("Error fetching items");
+        }
       },
     },
   },
@@ -53,12 +60,17 @@ const Mutation = new GraphQLObjectType({
       args: {
         name: { type: GraphQLString },
       },
-      resolve(parent, args) {
-        return pool
-          .query("INSERT INTO items (name) VALUES ($1) RETURNING *", [
-            args.name,
-          ])
-          .then((res) => res.rows[0]);
+      async resolve(parent, args) {
+        try {
+          const res = await db.query(
+            "INSERT INTO items (name) VALUES ($1) RETURNING *",
+            [args.name]
+          );
+          return res.rows[0]; // Return the inserted item
+        } catch (error) {
+          console.error("Error adding item:", error);
+          throw new Error("Error adding item");
+        }
       },
     },
   },
