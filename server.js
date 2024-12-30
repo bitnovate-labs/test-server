@@ -3,6 +3,7 @@ import { graphqlHTTP } from "express-graphql";
 import { schema, rootValue } from "./graphql/schema.js";
 import cors from "cors";
 import dotenv from "dotenv";
+import itemRoutes from "./routes/itemRoutes.js";
 
 dotenv.config();
 
@@ -29,6 +30,8 @@ app.use(
     // credentials: true,
   })
 );
+
+app.use("/items", itemRoutes);
 
 app.get("/", (req, res) =>
   res.send("Server started here!!! HEYYYYYY!!!!! What the CRAP FINALLY!!!")
