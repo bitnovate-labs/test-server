@@ -22,16 +22,18 @@ app.use(
 );
 
 // CORS Configuration
-app.use(
-  cors({
-    // origin: "http://localhost:5173",
-    origin: "https://main.dbg1wx3tbcsoa.amplifyapp.com/",
-    // credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     // origin: "http://localhost:5173",
+//     origin: "https://main.dbg1wx3tbcsoa.amplifyapp.com/",
+//     // credentials: true,
+//   })
+// );
 
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(cors());
+
 app.use("/items", itemRoutes);
 
 app.get("/", (req, res) =>
