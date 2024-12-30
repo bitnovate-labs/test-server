@@ -1,4 +1,3 @@
-// routes/itemRoutes.js
 import express from "express";
 import fetch from "node-fetch"; // or any HTTP client
 
@@ -15,9 +14,12 @@ router.get("/", async (req, res) => {
           query: `
           query {
             items {
-              id
+              item_id
               name
               description
+              price
+              quantity
+              created_at
             }
           }
         `,
