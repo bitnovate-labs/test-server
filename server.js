@@ -24,6 +24,7 @@ app.use(
   cors({
     // origin: "http://localhost:5173",
     origin: "https://main.dbg1wx3tbcsoa.amplifyapp.com/",
+    methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
 );
