@@ -25,13 +25,10 @@ app.use(
     // origin: "http://localhost:5173",
     origin: "https://main.dbg1wx3tbcsoa.amplifyapp.com/",
     methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type"],
     // credentials: true,
   })
 );
-
-// Enable preflight for all routes (for handling OPTIONS requests)
-app.options("*", cors()); // This handles preflight requests for all routes
 
 app.get("/", (req, res) =>
   res.send("Server started here!!! HEYYYYYY!!!!! What the CRAP FINALLY!!!")
