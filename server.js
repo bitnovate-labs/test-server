@@ -21,14 +21,16 @@ app.use(
 );
 
 // CORS Configuration
-app.use(
-  cors({
-    // origin: "https://main.dbg1wx3tbcsoa.amplifyapp.com",
-    origin:
-      "http://s3.test.application.s3-website-ap-southeast-1.amazonaws.com/",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://main.dbg1wx3tbcsoa.amplifyapp.com",
+//     origin:
+//       "http://s3.test.application.s3-website-ap-southeast-1.amazonaws.com/",
+//     credentials: true,
+//   })
+// );
+
+app.use(cors());
 
 app.use("/items", itemRoutes);
 
